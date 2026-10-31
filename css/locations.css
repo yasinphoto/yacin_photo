@@ -1,0 +1,540 @@
+/* =========================================================
+   YACIN PHOTO — Locations Section
+   Location cards + location works modal
+========================================================= */
+
+.locations {
+  background:
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 24px;
+}
+
+/* ═══════════════════════════════════
+   Location Card
+═══════════════════════════════════ */
+
+.location-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 380px;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  background: #111;
+  color: inherit;
+  font: inherit;
+  text-align: right;
+  cursor: pointer;
+  isolation: isolate;
+  transition:
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.location-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.88) 0%,
+      rgba(0, 0, 0, 0.45) 45%,
+      rgba(0, 0, 0, 0.12) 100%
+    );
+  pointer-events: none;
+}
+
+.location-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.location-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(215, 179, 106, 0.28);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(215, 179, 106, 0.06);
+}
+
+.location-card:hover img {
+  transform: scale(1.08);
+}
+
+.location-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.location-card__content {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  padding: 28px 26px 26px;
+}
+
+.location-card__count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--gold);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.location-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.32rem;
+  line-height: 1.5;
+  font-weight: 800;
+  color: #fff;
+}
+
+.location-card p {
+  margin: 0 0 18px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.93rem;
+  line-height: 1.9;
+}
+
+.location-card__view {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.location-card__view svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.location-card:hover .location-card__view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* برای موبایل و دستگاه‌های لمسی، دکمه همیشه دیده بشه */
+@media (hover: none) {
+  .location-card__view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ═══════════════════════════════════
+   Location Modal
+═══════════════════════════════════ */
+
+.loc-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.loc-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.loc-modal__panel {
+  width: min(1200px, 100%);
+  max-height: min(90vh, 900px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(18, 18, 20, 0.98) 0%, rgba(8, 8, 10, 0.98) 100%);
+  box-shadow:
+    0 40px 120px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(24px) scale(0.98);
+  opacity: 0;
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.35s ease;
+}
+
+.loc-modal.active .loc-modal__panel {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.loc-modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.loc-modal__info {
+  min-width: 0;
+}
+
+.loc-modal__head h3 {
+  margin: 0 0 6px;
+  font-size: clamp(1.18rem, 3vw, 1.7rem);
+  line-height: 1.45;
+  font-weight: 800;
+  color: #fff;
+}
+
+.loc-modal__head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.loc-modal__close {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.loc-modal__close:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #1a1408;
+  transform: scale(1.05);
+}
+
+.loc-modal__close:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.loc-modal__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}
+
+.loc-modal__body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.loc-modal__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.loc-modal__body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+}
+
+.loc-modal__body::-webkit-scrollbar-thumb:hover {
+  background: rgba(215, 179, 106, 0.35);
+}
+
+/* ═══════════════════════════════════
+   Location Gallery
+═══════════════════════════════════ */
+
+.loc-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.loc-work {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #111;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.loc-work img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loc-work:hover {
+  transform: translateY(-5px);
+  border-color: rgba(215, 179, 106, 0.28);
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.42),
+    0 0 28px rgba(215, 179, 106, 0.06);
+}
+
+.loc-work:hover img {
+  transform: scale(1.08);
+}
+
+.loc-work:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.loc-work__title {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 38px 16px 16px;
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.86) 0%,
+      rgba(0, 0, 0, 0.35) 60%,
+      transparent 100%
+    );
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.7;
+  text-align: right;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+  pointer-events: none;
+}
+
+.loc-work:hover .loc-work__title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (hover: none) {
+  .loc-work__title {
+    opacity: 1;
+    transform: translateY(0);
+    font-size: 0.82rem;
+    padding: 32px 12px 12px;
+  }
+}
+
+.loc-empty {
+  grid-column: 1 / -1;
+  padding: 70px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+/* ═══════════════════════════════════
+   Responsive
+═══════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .locations-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .location-card {
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 900px) {
+  .locations-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .location-card {
+    min-height: 280px;
+    border-radius: 18px;
+  }
+  .location-card__content {
+    padding: 20px 18px 18px;
+  }
+  .location-card h3 {
+    font-size: 1.15rem;
+  }
+  .location-card p {
+    font-size: 0.86rem;
+    margin-bottom: 12px;
+  }
+  .loc-modal {
+    padding: 0;
+  }
+  .loc-modal__panel {
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: 100dvh;
+    border: 0;
+    border-radius: 0;
+    transform: translateY(0);
+  }
+  .loc-modal__head {
+    padding: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(18, 18, 20, 0.98);
+    backdrop-filter: blur(14px);
+  }
+  .loc-modal__body {
+    padding: 16px;
+  }
+  .loc-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .locations-grid {
+    gap: 12px;
+  }
+  .location-card {
+    min-height: 260px;
+  }
+  .loc-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .loc-work {
+    border-radius: 12px;
+  }
+  .loc-work__title {
+    font-size: 0.72rem;
+    padding: 24px 8px 8px;
+  }
+}
+@media (max-width: 640px) {
+  .locations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .location-card {
+    min-height: 300px;
+  }
+
+  .location-card__count {
+    font-size: 0.7rem;
+    padding: 6px 12px;
+  }
+
+  .location-card h3 {
+    font-size: 1.12rem;
+  }
+
+  .location-card p {
+    font-size: 0.86rem;
+    margin-bottom: 14px;
+  }
+
+  .loc-modal__head h3 {
+    font-size: 1.08rem;
+  }
+
+  .loc-modal__head p {
+    font-size: 0.82rem;
+  }
+
+  .loc-modal__close {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+
+  .loc-gallery {
+    gap: 10px;
+  }
+
+  .loc-work {
+    border-radius: 16px;
+  }
+
+  .loc-work__title {
+    font-size: 0.76rem;
+    padding: 28px 10px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .location-card,
+  .location-card img,
+  .location-card__view,
+  .loc-modal,
+  .loc-modal__panel,
+  .loc-work,
+  .loc-work img,
+  .loc-work__title {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,668 @@
+/* =========================================================
+
+   YACIN_PHOTO — Formation Gallery V2
+   Full-width, responsive, mobile-optimized
+========================================================= */
+/* ─────────────────────────────────────
+   Performance & Anti-Flicker
+───────────────────────────────────── */
+.fm-card {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
+
+.fm-card-inner {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.fm-wrapper {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.fm-root {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  min-height: 600px;
+  max-height: 1100px;
+  overflow: hidden;
+  user-select: none;
+  background:
+    linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+  color: rgba(255, 255, 255, 0.92);
+  touch-action: pan-y;
+  cursor: grab;
+  border-radius: 0;
+}
+
+.fm-root:active {
+  cursor: grabbing;
+}
+
+/* Border top/bottom برای جداسازی */
+.fm-root::before,
+.fm-root::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+.fm-root::before {
+  top: 0;
+}
+
+.fm-root::after {
+  bottom: 0;
+}
+
+.fm-perspective {
+  position: absolute;
+  inset: 0;
+  perspective: 2000px;
+  perspective-origin: 50% 50%;
+}
+
+.fm-parallax {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+/* ─────────────────────────────────────
+   Card Styles
+───────────────────────────────────── */
+.fm-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+
+.fm-card-inner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow:
+    0 20px 50px -16px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  background: #0a0a0a;
+}
+
+.fm-card-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1),
+    transparent 50%
+  );
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fm-card-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  border-radius: inherit;
+  filter: saturate(0.95) contrast(1.05);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: scale(1);
+}
+
+.fm-card.hovered .fm-card-img {
+  transform: scale(1.08);
+}
+
+.fm-card.hovered .fm-card-inner {
+  box-shadow:
+    0 30px 70px -16px rgba(0, 0, 0, 0.8),
+    0 0 50px rgba(255, 255, 255, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.fm-card-title {
+  position: absolute;
+  inset: auto 12px 12px 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  pointer-events: none;
+  z-index: 3;
+  text-align: center;
+}
+
+.fm-card.hovered .fm-card-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─────────────────────────────────────
+   Footer Counter
+───────────────────────────────────── */
+.fm-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  display: none;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 24px 32px;
+  pointer-events: none;
+}
+
+.fm-counter {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ─────────────────────────────────────
+   Mode Dock
+───────────────────────────────────── */
+.fm-dock {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding: 0 16px 24px;
+  pointer-events: none;
+}
+
+.fm-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 5px;
+  border-radius: 999px;
+  background: rgba(5, 5, 5, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 14px 40px -20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  pointer-events: auto;
+}
+
+.fm-tab {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+  font-family: inherit;
+}
+
+.fm-tab:hover {
+  color: #ffffff;
+}
+
+.fm-tab.active {
+  background: linear-gradient(180deg, #ffffff, #d0d0d0);
+  color: #050505;
+  font-weight: 700;
+}
+
+/* ─────────────────────────────────────
+   Bloom Animation
+───────────────────────────────────── */
+.fm-card-inner.bloom {
+  opacity: 0;
+  transform: scale(0.7) translateY(10px);
+  filter: blur(12px);
+}
+
+/* ─────────────────────────────────────
+   Desktop (1024px+)
+───────────────────────────────────── */
+@media (min-width: 1024px) {
+  .fm-wrapper {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .fm-root {
+    height: 92vh;
+    min-height: 700px;
+    border-radius: 8px;
+    margin: 0 2vw;
+    width: calc(100% - 4vw);
+  }
+
+  .fm-root::before,
+  .fm-root::after {
+    display: none;
+  }
+
+  .fm-footer {
+    display: flex;
+  }
+
+  .fm-dock {
+    left: auto;
+    right: 0;
+    top: 24px;
+    bottom: auto;
+    justify-content: flex-end;
+    padding: 0 32px;
+  }
+
+  .fm-root {
+    box-shadow:
+      0 50px 140px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* ─────────────────────────────────────
+   Tablet (768px - 1023px)
+───────────────────────────────────── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .fm-root {
+    height: 85vh;
+    min-height: 600px;
+  }
+
+  .fm-card-title {
+    font-size: 0.82rem;
+  }
+}
+
+/* ─────────────────────────────────────
+Mobile Small (max 640px)
+───────────────────────────────────── */
+@media (max-width: 640px) {
+  .fm-wrapper {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+  .fm-root {
+    height: 85vh;
+    min-height: 540px;
+  }
+  .fm-card-title {
+    font-size: 0.72rem;
+    padding: 7px 11px;
+    inset: auto 8px 8px 8px;
+  }
+
+  /* ═══ انتقال دکمه‌های حالت به بالای گالری ═══ */
+  .fm-dock {
+    top: 14px;
+    bottom: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    justify-content: center;
+    padding: 0 14px;
+    z-index: 60;
+  }
+
+  .fm-tabs {
+    gap: 3px;
+    padding: 5px;
+    max-width: 94vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    background: rgba(5, 5, 5, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  .fm-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .fm-tab {
+    padding: 8px 16px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .fm-tab.active {
+    background: linear-gradient(180deg, var(--gold, #d7b36a), #c9a55c);
+    color: #1a1408;
+  }
+
+  .fm-counter {
+    display: none;
+  }
+  .fm-footer {
+    display: none;
+  }
+}
+
+/* ─────────────────────────────────────
+Mobile (max 640px) — دکمه‌های واضح و خوش‌دست
+───────────────────────────────────── */
+@media (max-width: 640px) {
+  .fm-wrapper {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+  .fm-root {
+    height: 85vh;
+    min-height: 540px;
+  }
+  .fm-card-title {
+    font-size: 0.78rem;
+    padding: 8px 12px;
+    inset: auto 8px 8px 8px;
+  }
+
+  /* ═══ قاب دکمه‌ها: بالا وسط گالری ═══ */
+  .fm-dock {
+    top: 16px;
+    bottom: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    justify-content: center;
+    padding: 0 14px;
+    z-index: 60;
+  }
+
+  /* ═══ کپسول شیشه‌ای تیره ═══ */
+  .fm-tabs {
+    gap: 5px;
+    padding: 6px;
+    max-width: calc(100vw - 28px);
+    background: rgba(8, 8, 10, 0.92);
+    border: 1px solid rgba(215, 179, 106, 0.22);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    box-shadow:
+      0 10px 30px rgba(0, 0, 0, 0.55),
+      0 0 24px rgba(215, 179, 106, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  /* ═══ دکمه‌ها: ۴۴px حداقل ارتفاع (استاندارد لمسی) ═══ */
+  .fm-tab {
+    padding: 11px 20px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    min-height: 44px;
+    min-width: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.01em;
+    color: rgba(255, 255, 255, 0.75);
+    border-radius: 999px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fm-tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  /* ═══ حالت فعال: طلایی گرم با درخشش ═══ */
+  .fm-tab.active {
+    background: linear-gradient(180deg, #e8c98a 0%, var(--gold, #d7b36a) 55%, #c9a55c 100%);
+    color: #1a1408;
+    font-weight: 700;
+    box-shadow:
+      0 6px 18px rgba(215, 179, 106, 0.4),
+      0 0 14px rgba(215, 179, 106, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .fm-tab.active:hover {
+    background: linear-gradient(180deg, #f0d79c 0%, #e8c98a 55%, #d7b36a 100%);
+  }
+}
+/* ─────────────────────────────────────
+   Reduced Motion
+───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .fm-card,
+  .fm-card-inner,
+  .fm-card-img,
+  .fm-card-title,
+  .fm-tab,
+  .fm-parallax {
+    transition: none !important;
+  }
+}
+/* ─────────────────────────────────────
+   Lightbox
+───────────────────────────────────── */
+.fm-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.fm-lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.fm-lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border-radius: 16px;
+  box-shadow:
+    0 40px 120px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fm-lightbox.active .fm-lightbox-img {
+  transform: scale(1);
+}
+
+.fm-lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.fm-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.fm-lightbox-title {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .fm-lightbox-img {
+    max-width: 94vw;
+    max-height: 80vh;
+    border-radius: 12px;
+  }
+
+  .fm-lightbox-close {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .fm-lightbox-title {
+    bottom: 24px;
+    font-size: 0.88rem;
+    padding: 10px 18px;
+  }
+}
+/* ─────────────────────────────────────
+   Mobile Specific Improvements
+───────────────────────────────────── */
+@media (max-width: 640px) {
+  .fm-card-inner {
+    border-radius: 10px;
+  }
+
+  .fm-card-title {
+    font-size: 0.7rem;
+    padding: 6px 10px;
+  }
+
+  /* در موبایل کارت‌ها کمی کوچک‌تر */
+  .fm-card {
+    max-width: 200px;
+  }
+
+  /* دکمه‌های حالت واضح‌تر */
+  .fm-tab {
+    font-size: 0.7rem;
+    padding: 6px 12px;
+  }
+
+  .fm-tabs {
+    padding: 3px;
+    gap: 2px;
+  }
+}
+
+/* تبلت */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .fm-card {
+    max-width: 260px;
+  }
+
+  .fm-tab {
+    font-size: 0.78rem;
+    padding: 7px 14px;
+  }
+}
+/* ─── حالت فوکوس کیبورد (دسترسی‌پذیری) ─── */
+.fm-card:focus {
+  outline: none;
+}
+.fm-card:focus-visible .fm-card-inner {
+  outline: 2px solid var(--gold, #d7b36a);
+  outline-offset: 5px;
+  box-shadow:
+    0 30px 70px -16px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(215, 179, 106, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+/* ═══════════════════════════════════
+Mobile-First Card Sizes Override
+═══════════════════════════════════ */
+@media (max-width: 640px) {
+  .fm-card {
+    max-width: 58vw !important;
+  }
+  .fm-card-inner {
+    border-radius: 14px;
+  }
+  .fm-card-title {
+    font-size: 0.76rem !important;
+    font-weight: 700;
+    padding: 8px 12px !important;
+  }
+}

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary Meta -->
+  <title>یاسین فوتو | عکاسی مدلینگ، فضای باز و تبلیغاتی</title>
+  <meta name="description" content="عکاسی حرفه‌ای مدلینگ، پرتره فضای باز و تبلیغاتی برای برندها و مدل‌ها. مشاهده نمونه‌کارها و رزرو جلسه عکاسی." />
+  <meta name="author" content="Yacin Photo" />
+  <link rel="canonical" href="https://yacinphoto.com/" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0b0b0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="یاسین فوتو | عکاسی مدلینگ و تبلیغاتی" />
+  <meta property="og:description" content="خلق تصاویر حرفه‌ای برای برند شما و مدل‌های حرفه‌ای." />
+  <meta property="og:image" content="https://yacinphoto.com/assets/og-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="fa_IR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yacinphoto.com/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="یاسین فوتو | عکاسی مدلینگ و تبلیغاتی" />
+  <meta name="twitter:description" content="عکاسی مدلینگ، فضای باز و تبلیغاتی" />
+  <meta name="twitter:image" content="https://yacinphoto.com/assets/og-cover.jpg" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "یاسین فوتو",
+    "alternateName": "Yacin Photo",
+    "description": "عکاسی حرفه‌ای مدلینگ، فضای باز و تبلیغاتی",
+    "url": "https://yacinphoto.com",
+    "telephone": "+98-914-040-7325",
+    "email": "contact@yacinphoto.com",
+    "sameAs": ["https://instagram.com/yacin_photo"],
+    "image": "https://yacinphoto.com/assets/og-cover.jpg",
+    "priceRange": "$$",
+    "address": { "@type": "PostalAddress", "addressCountry": "IR" }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Vazirmatn:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/formation.css" />
+  <link rel="stylesheet" href="css/locations.css" />
+</head>
+<body>
+  <!-- ═══ پس‌زمینه سینمایی ═══ -->
+  <div class="bg-fx" aria-hidden="true">
+    <canvas id="dustCanvas"></canvas>
+    <div class="bg-blob bg-blob--1"></div>
+    <div class="bg-blob bg-blob--2"></div>
+    <div class="bg-blob bg-blob--3"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-vignette"></div>
+    <div class="bg-spotlight" id="bgSpotlight"></div>
+  </div>
+
+  <!-- ═══ نوار پیشرفت اسکرول ═══ -->
+  <div class="scroll-progress" aria-hidden="true"><i></i></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="logo">
+        <img src="assets/logo.png" alt="Yacin Photo Logo" class="logo-img" />
+        <span class="logo-text">
+          YACIN<span class="logo-accent">_PHOTO</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="باز و بسته کردن منو" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="menu" id="menu">
+        <li><a href="#home">خانه</a></li>
+        <li><a href="#portfolio">نمونه‌کارها</a></li>
+        <li><a href="#locations">لوکیشن‌ها</a></li>
+        <li><a href="#services">خدمات</a></li>
+        <li><a href="#about">درباره من</a></li>
+        <li><a href="#instagram">اینستاگرام</a></li>
+        <li><a href="#contact">رزرو جلسه</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="hero-media">
+        <img src="assets/hero.jpg" alt="عکاسی مدلینگ و فضای باز" />
+      </div>
+
+      <div class="hero-content container reveal">
+        <p class="hero-tag">عکاسی مدلینگ | فضای باز | تبلیغاتی</p>
+        <h1>خلق تصویر حرفه‌ای،<br />ثبت حس، لحظه و شخصیت</h1>
+        <p class="hero-text">
+          یاسین فوتو با تمرکز بر عکاسی مدلینگ، پرتره فضای باز و پروژه‌های تبلیغاتی،
+          برای برند شما و مدل‌های حرفه‌ای تصاویری ماندگار و سطح بالا خلق می‌کند.
+        </p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn btn-primary">مشاهده نمونه‌کارها</a>
+          <a href="https://instagram.com/yacin_photo" target="_blank" rel="noopener" class="btn btn-outline">دنبال کردن در اینستاگرام</a>
+        </div>
+      </div>
+
+      <div class="hero-scroll">اسکرول</div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="section portfolio">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag">Portfolio</span>
+          <h2>نمونه‌کارهای منتخب</h2>
+          <p>مجموعه‌ای از پروژه‌های مدلینگ، فضای باز و تبلیغاتی</p>
+        </div>
+      </div>
+
+      <div class="fm-wrapper">
+        <section class="fm-root" id="fmRoot" data-mode="tilt">
+          <div class="fm-perspective">
+            <div class="fm-parallax" id="fmParallax"></div>
+          </div>
+          <footer class="fm-footer">
+            <span class="fm-counter" id="fmCounter">01 — 16</span>
+          </footer>
+          <div class="fm-dock">
+            <div class="fm-tabs" role="tablist" aria-label="حالت نمایش گالری">
+              <button class="fm-tab" type="button" data-mode="cascade" role="tab" aria-selected="false">آبشاری</button>
+<button class="fm-tab" type="button" data-mode="ring" role="tab" aria-selected="false">حلقه‌ای</button>
+<button class="fm-tab active" type="button" data-mode="tilt" role="tab" aria-selected="true">مارپیچ</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Locations -->
+    <section id="locations" class="section locations">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag">Locations</span>
+          <h2>لوکیشن‌های عکاسی</h2>
+          <p>هر فضا حال و هوای خودش رو داره؛ روی هر لوکیشن کلیک کن تا نمونه‌کارهای ثبت‌شده در اون محیط رو ببینی.</p>
+        </div>
+        <div class="locations-grid" id="locationsGrid"></div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section services">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag">Services</span>
+          <h2>خدمات عکاسی</h2>
+          <p>خدمات حرفه‌ای برای مدل‌ها، برندها و کسب‌وکارها</p>
+        </div>
+        <div class="services-grid" id="servicesGrid">
+          <article class="service-card reveal">
+            <div class="service-icon">✦</div>
+            <h3>عکاسی مدلینگ</h3>
+            <p>عکاسی مدلینگ با ترکیب‌بندی حرفه‌ای، نورپردازی طبیعی یا مصنوعی، مناسب برای پورتفولیو، آژانس‌های مدلینگ و شبکه‌های اجتماعی.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon">☀</div>
+            <h3>عکاسی فضای باز</h3>
+            <p>ثبت پرتره و مدلینگ در لوکیشن‌های طبیعی، شهری، ساحلی، جنگلی و صنعتی با استفاده از نور طبیعی و حس سینمایی.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon">◈</div>
+            <h3>عکاسی تبلیغاتی</h3>
+            <p>تولید تصویر برای کمپین‌های تبلیغاتی، برندینگ، محصول، فشن، کافه، رستوران و کسب‌وکارهای نیازمند محتوای بصری حرفه‌ای.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section about">
+      <div class="container about-wrap">
+        <div class="about-media reveal">
+          <img id="aboutImage" src="https://picsum.photos/seed/yacin-about/900/1150" alt="درباره یاسین فوتو" loading="lazy" decoding="async" />
+        </div>
+        <div class="about-content reveal">
+          <span class="section-tag">About</span>
+          <h2 id="aboutTitle">ثبت لحظه‌ها با نگاه حرفه‌ای و هنری</h2>
+          <p id="aboutText1">یاسین فوتو با تمرکز بر عکاسی مدلینگ، پرتره فضای باز و پروژه‌های تبلیغاتی، تلاش می‌کند نه فقط یک عکس، بلکه یک حس، شخصیت و داستان را ثبت کند.</p>
+          <p id="aboutText2">هدف ما ساخت تصاویری است که هم از نظر هنری قوی باشند و هم از نظر تبلیغاتی بتوانند برای برند، محصول یا مدل ارزش واقعی ایجاد کنند.</p>
+          <div class="about-stats" id="aboutStats">
+            
+            <div class="stat-box"><strong>+120</strong><span>پروژه موفق</span></div>
+            <div class="stat-box"><strong>+80</strong><span>همکاری با مدل</span></div>
+            <div class="stat-box"><strong>+35</strong><span>پروژه تبلیغاتی</span></div>
+          </div>
+          <!-- ═══ مهارت‌های تخصصی ═══ -->
+<div class="about-skills reveal">
+  <h3 class="about-skills__title">مهارت‌های تخصصی</h3>
+  <div class="skill-bar">
+    <div class="skill-bar__head">
+      <span class="skill-bar__name">عکاسی مدلینگ و پرتره</span>
+      <span class="skill-bar__percent">۹۵٪</span>
+    </div>
+    <div class="skill-bar__track">
+      <div class="skill-bar__fill" data-width="95"></div>
+    </div>
+  </div>
+  <div class="skill-bar">
+    <div class="skill-bar__head">
+      <span class="skill-bar__name">عکاسی فضای باز و طبیعت</span>
+      <span class="skill-bar__percent">۹۰٪</span>
+    </div>
+    <div class="skill-bar__track">
+      <div class="skill-bar__fill" data-width="90"></div>
+    </div>
+  </div>
+  <div class="skill-bar">
+    <div class="skill-bar__head">
+      <span class="skill-bar__name">عکاسی تبلیغاتی و برندینگ</span>
+      <span class="skill-bar__percent">۸۵٪</span>
+    </div>
+    <div class="skill-bar__track">
+      <div class="skill-bar__fill" data-width="85"></div>
+    </div>
+  </div>
+  <div class="skill-bar">
+    <div class="skill-bar__head">
+      <span class="skill-bar__name">ویرایش و رتوش حرفه‌ای</span>
+      <span class="skill-bar__percent">۹۲٪</span>
+    </div>
+    <div class="skill-bar__track">
+      <div class="skill-bar__fill" data-width="92"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ نشان‌های افتخار ═══ -->
+<div class="about-badges reveal">
+  <div class="badge-card">
+    <div class="badge-card__icon">🏆</div>
+    <strong>+۵ سال</strong>
+    <span>تجربه حرفه‌ای</span>
+  </div>
+  <div class="badge-card">
+    <div class="badge-card__icon">⭐</div>
+    <strong>+۸۰</strong>
+    <span>مشتری راضی</span>
+  </div>
+  <div class="badge-card">
+    <div class="badge-card__icon">📸</div>
+    <strong>+۱۲۰</strong>
+    <span>پروژه موفق</span>
+  </div>
+  <div class="badge-card">
+    <div class="badge-card__icon">🎨</div>
+    <strong>+۱۵</strong>
+    <span>برند همکار</span>
+  </div>
+</div>
+
+<!-- ═══ نقل قول مشتری ═══ -->
+<div class="about-testimonial reveal">
+  <div class="about-testimonial__quote">
+    «یاسین فقط عکس نمی‌گیرد، حس و شخصیت شما را ثبت می‌کند. نتیجه فراتر از انتظار بود.»
+  </div>
+  <div class="about-testimonial__author">
+    <div class="about-testimonial__avatar">س</div>
+    <div>
+      <strong>سارا محمدی</strong>
+      <span>مدل و اینفلوئنسر</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ دکمه‌های اقدام ═══ -->
+<div class="about-cta reveal">
+  <a href="#contact" class="btn btn-primary">رزرو جلسه عکاسی</a>
+  <a href="#portfolio" class="btn btn-outline">مشاهده نمونه‌کارها</a>
+</div>
+        </div>
+            </div>
+    </section>
+
+    <!-- Instagram -->
+    <section id="instagram" class="section instagram">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag">Instagram</span>
+          <h2>آخرین پست‌های اینستاگرام</h2>
+          <p>برای دیدن پروژه‌های بیشتر، صفحه اینستاگرام را دنبال کنید.</p>
+        </div>
+        <div class="instagram-grid reveal" id="instagramGrid">
+          <a class="insta-item" href="https://instagram.com/yacin_photo" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/yacin-insta-1/600/600" alt="پست اینستاگرام" loading="lazy" decoding="async" />
+          </a>
+          <a class="insta-item" href="https://instagram.com/yacin_photo" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/yacin-insta-2/600/600" alt="پست اینستاگرام" loading="lazy" decoding="async" />
+          </a>
+          <a class="insta-item" href="https://instagram.com/yacin_photo" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/yacin-insta-3/600/600" alt="پست اینستاگرام" loading="lazy" decoding="async" />
+          </a>
+          <a class="insta-item" href="https://instagram.com/yacin_photo" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/yacin-insta-4/600/600" alt="پست اینستاگرام" loading="lazy" decoding="async" />
+          </a>
+          <a class="insta-item" href="https://instagram.com/yacin_photo" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/yacin-insta-5/600/600" alt="پست اینستاگرام" loading="lazy" decoding="async" />
+          </a>
+          <a class="insta-item" href="https://instagram.com/yacin_photo" target="_blank" rel="noopener">
+            <img src="https://picsum.photos/seed/yacin-insta-6/600/600" alt="پست اینستاگرام" loading="lazy" decoding="async" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag">Booking</span>
+          <h2 id="contactTitle">رزرو جلسه عکاسی</h2>
+          <p id="contactSubtitle">برای همکاری، رزرو جلسه عکاسی یا مشاوره پروژه، فرم زیر را تکمیل کنید.</p>
+        </div>
+
+        <div class="contact-wrap">
+          <div class="contact-form reveal">
+            <form id="contactForm">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="name">نام و نام خانوادگی</label>
+                  <input type="text" id="name" name="name" placeholder="نام خود را وارد کنید" required />
+                </div>
+                <div class="form-group">
+                  <label for="phone">شماره تماس</label>
+                  <input type="tel" id="phone" name="phone" placeholder="۰۹۱۲ ..." required />
+                </div>
+                <div class="form-group">
+                  <label for="email">ایمیل (اختیاری)</label>
+                  <input type="email" id="email" name="email" placeholder="email@example.com" />
+                </div>
+                <div class="form-group">
+                  <label for="service">نوع خدمات</label>
+                  <select id="service" name="service" required>
+                    <option value="">نوع خدمات را انتخاب کنید</option>
+                    <option value="modeling">عکاسی مدلینگ</option>
+                    <option value="outdoor">عکاسی فضای باز</option>
+                    <option value="commercial">عکاسی تبلیغاتی</option>
+                    <option value="branding">عکاسی برندینگ</option>
+                    <option value="other">سایر</option>
+                  </select>
+                </div>
+                <div class="form-group full">
+                  <label for="message">توضیحات</label>
+                  <textarea id="message" name="message" placeholder="درباره پروژه‌تان بنویسید..."></textarea>
+                </div>
+                <div class="form-group full">
+                  <button type="submit" class="btn btn-primary btn-full">ارسال درخواست همکاری</button>
+                </div>
+              </div>
+              <!-- Honeypot ضد اسپم: برای انسان نامرئی است، ربات آن را پر می‌کند -->
+              <input type="text" name="website" id="websiteField" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute !important;left:-9999px !important;height:0;width:0;opacity:0;pointer-events:none;" />
+              <div class="form-message" id="formMessage"></div>
+            </form>
+          </div>
+
+          <div class="contact-info reveal" id="contactInfo">
+            <div class="contact-item">
+              <span>اینستاگرام</span>
+              <a href="https://instagram.com/yacin_photo" target="_blank" rel="noopener">@yacin_photo</a>
+            </div>
+            <div class="contact-item">
+              <span>واتس‌اپ</span>
+              <a href="https://wa.me/989140407325" target="_blank" rel="noopener">۰۹۱۴ ۰۴ ۷۳۲۵</a>
+            </div>
+            <div class="contact-item">
+              <span>ایمیل</span>
+              <a href="mailto:contact@yacinphoto.com">contact@yacinphoto.com</a>
+            </div>
+            <div class="contact-item">
+              <span>حوزه فعالیت</span>
+              <p>عکاسی مدلینگ، فضای باز، تبلیغاتی و برندینگ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Location Modal -->
+  <div class="loc-modal" id="locModal" aria-hidden="true">
+    <div class="loc-modal__panel" role="dialog" aria-modal="true" aria-labelledby="locModalTitle">
+      <header class="loc-modal__head">
+        <div class="loc-modal__info">
+          <h3 id="locModalTitle"></h3>
+          <p id="locModalSubtitle"></p>
+        </div>
+        <button class="loc-modal__close" id="locModalClose" type="button" aria-label="بستن">✕</button>
+      </header>
+      <div class="loc-modal__body">
+        <div class="loc-gallery" id="locGallery"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="fm-lightbox" id="fmLightbox" role="dialog" aria-modal="true" aria-label="نمایش تصویر نمونه‌کار" aria-hidden="true">
+    <button class="fm-lightbox-close" id="fmLightboxClose" type="button" aria-label="بستن">✕</button>
+    <img class="fm-lightbox-img" id="fmLightboxImg" src="" alt="" />
+    <div class="fm-lightbox-title" id="fmLightboxTitle"></div>
+  </div>
+
+  <!-- Floating Action Buttons -->
+  <div class="floating-actions">
+    <a href="https://wa.me/989140407325" target="_blank" rel="noopener" class="fab fab-whatsapp" aria-label="تماس از طریق واتس‌اپ">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+      <span class="fab-tooltip">چت در واتس‌اپ</span>
+    </a>
+    <a href="https://instagram.com/yacin_photo" target="_blank" rel="noopener" class="fab fab-instagram" aria-label="دنبال کردن در اینستاگرام">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+      </svg>
+      <span class="fab-tooltip">اینستاگرام</span>
+    </a>
+  </div>
+
+  <!-- ═══ Notch Bottom Nav (Mobile) ═══ -->
+  <nav class="ynav" id="ynav" aria-label="ناوبری اصلی موبایل">
+    <span class="ynav__dome" id="ynavDome" aria-hidden="true">
+      <svg viewBox="0 0 84 40" width="84" height="40">
+        <path class="dome-fill" d="M0 20 H84 V40 H0 Z"/>
+        <path class="dome-line" d="M0 20 C12 20 16 20 22 14 C28 8 30 2 40 2 H44 C54 2 56 8 62 14 C68 20 72 20 84 20"/>
+      </svg>
+    </span>
+
+    <a href="/" class="ynav__brand" aria-label="یاسین فوتو">
+      <img src="/assets/logo.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+      <span class="ynav__fb">Y</span>
+    </a>
+
+    <a href="#home" class="ynav__item is-active" data-target="home">
+      <span class="ynav__ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.4 12 3l9 7.4"/><path d="M5.2 9.2V19a2 2 0 0 0 2 2H10v-5.4h4V21h2.8a2 2 0 0 0 2-2V9.2"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.35 2.64a1 1 0 0 1 1.3 0l8 7a1 1 0 0 1 .35.76V19a3 3 0 0 1-3 3h-3.2a1 1 0 0 1-1-1v-4.4h-3.2V21a1 1 0 0 1-1 1H6.4a3 3 0 0 1-3-3V10.4a1 1 0 0 1 .35-.76z"/></svg>
+      </span>
+      <span class="ynav__lbl">خانه</span><i class="ynav__dot"></i>
+    </a>
+
+    <a href="#portfolio" class="ynav__item" data-target="portfolio">
+      <span class="ynav__ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.4" height="7.4" rx="2"/><rect x="13.6" y="3" width="7.4" height="7.4" rx="2"/><rect x="3" y="13.6" width="7.4" height="7.4" rx="2"/><rect x="13.6" y="13.6" width="7.4" height="7.4" rx="2"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.4" height="7.4" rx="2"/><rect x="13.6" y="3" width="7.4" height="7.4" rx="2"/><rect x="3" y="13.6" width="7.4" height="7.4" rx="2"/><rect x="13.6" y="13.6" width="7.4" height="7.4" rx="2"/></svg>
+      </span>
+      <span class="ynav__lbl">کارها</span><i class="ynav__dot"></i>
+    </a>
+
+    <a href="#locations" class="ynav__item" data-target="locations">
+      <span class="ynav__ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.2s6.8-6.2 6.8-10.7a6.8 6.8 0 1 0-13.6 0c0 4.5 6.8 10.7 6.8 10.7Z"/><circle cx="12" cy="10.2" r="2.4"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M12 2.2a6.8 6.8 0 0 0-6.8 6.8c0 4.5 6.8 10.7 6.8 10.7s6.8-6.2 6.8-10.7A6.8 6.8 0 0 0 12 2.2m0 9.2a2.4 2.4 0 1 1 0-4.8 2.4 2.4 0 0 1 0 4.8"/></svg>
+      </span>
+      <span class="ynav__lbl">لوکیشن</span><i class="ynav__dot"></i>
+    </a>
+
+    <a href="#services" class="ynav__item" data-target="services">
+      <span class="ynav__ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 14.5 9l6.7.5-5.1 4.4 1.7 6.6L12 17.2l-5.8 3.3 1.7-6.6L2.8 9.5 9.5 9z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8 14.5 9l6.7.5-5.1 4.4 1.7 6.6L12 17.2l-5.8 3.3 1.7-6.6L2.8 9.5 9.5 9z"/></svg>
+      </span>
+      <span class="ynav__lbl">خدمات</span><i class="ynav__dot"></i>
+    </a>
+
+    <a href="#contact" class="ynav__item" data-target="contact">
+      <span class="ynav__ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2.6"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 2a1 1 0 0 1 1 1v1h6V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v1H3V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1M3 10h18v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z"/></svg>
+      </span>
+      <span class="ynav__lbl">رزرو</span><i class="ynav__dot"></i>
+    </a>
+
+    <button type="button" class="ynav__item ynav__more" id="ynavMore" aria-label="بیشتر" aria-expanded="false">
+      <span class="ynav__ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="19" cy="12" r="1.9"/></svg>
+      </span>
+      <span class="ynav__lbl">بیشتر</span>
+    </button>
+  </nav>
+
+  <!-- ═══ More Sheet (فقط یک بار) ═══ -->
+  <div class="ymore" id="ymore" aria-hidden="true">
+    <div class="ymore__sheet" role="dialog" aria-modal="true" aria-label="سایر بخش‌ها">
+      <div class="ymore__grab"></div>
+      <div class="ymore__cap">سایر بخش‌ها</div>
+      <div class="ymore__grid">
+        <a href="#about" class="ymore__link">درباره من
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </a>
+        <a href="#instagram" class="ymore__link">اینستاگرام
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </a>
+        <a href="https://wa.me/989140407325" target="_blank" rel="noopener" class="ymore__link">واتس‌اپ
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ فوتر سینمایی (جایگاه صحیح: انتهای body) ═══ -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="footer-glow" aria-hidden="true"></div>
+
+    <div class="footer-top">
+      <div class="footer-col footer-brand">
+        <div class="footer-logo">
+          <span class="footer-logo__mark">Y</span>
+          <div>
+            <strong>YACIN<span class="footer-logo__dot">·</span>PHOTO</strong>
+            <small>استودیو عکاسی حرفه‌ای</small>
+          </div>
+        </div>
+        <p class="footer-brand__text">
+          ثبت حس، لحظه و شخصیت با نگاهی هنری و حرفه‌ای.
+          تخصص ما عکاسی مدلینگ، فضای باز و تبلیغاتی است.
+        </p>
+        <div class="footer-social">
+          <a href="https://instagram.com/yacin_photo" target="_blank" rel="noopener" aria-label="اینستاگرام" class="footer-social__link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/989140407325" target="_blank" rel="noopener" aria-label="واتس‌اپ" class="footer-social__link">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.1-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3c-.9-1.4-1.3-3-1.3-4.7 0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.6-8.5 8.6z"/>
+            </svg>
+          </a>
+          <a href="mailto:contact@yacinphoto.com" aria-label="ایمیل" class="footer-social__link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-10 6L2 7"/>
+            </svg>
+          </a>
+          <a href="https://t.me/yacin_photo" target="_blank" rel="noopener" aria-label="تلگرام" class="footer-social__link">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.6 6.9-1.5 7c-.1.5-.4.6-.8.4l-2.2-1.6-1.1 1c-.1.1-.2.2-.5.2l.2-2.4 4.3-3.9c.2-.2 0-.3-.3-.1l-5.3 3.3-2.3-.7c-.5-.2-.5-.5.1-.7l9-3.5c.4-.1.8.1.7.7z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col__title">دسترسی سریع</h4>
+        <ul class="footer-links">
+          <li><a href="#home">خانه</a></li>
+          <li><a href="#portfolio">نمونه‌کارها</a></li>
+          <li><a href="#locations">لوکیشن‌ها</a></li>
+          <li><a href="#services">خدمات</a></li>
+          <li><a href="#about">درباره ما</a></li>
+          <li><a href="#contact">رزرو جلسه</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col__title">خدمات ما</h4>
+        <ul class="footer-links">
+          <li><a href="#services">عکاسی مدلینگ</a></li>
+          <li><a href="#services">عکاسی فضای باز</a></li>
+          <li><a href="#services">عکاسی تبلیغاتی</a></li>
+          <li><a href="#services">عکاسی برندینگ</a></li>
+          <li><a href="#services">مشاوره پروژه</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col__title">تماس با ما</h4>
+        <ul class="footer-contact">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/>
+            </svg>
+            <a href="https://wa.me/989140407325" dir="ltr">۰۹۱۴ ۰۴۰ ۷۳۲۵</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-10 6L2 7"/>
+            </svg>
+            <a href="mailto:contact@yacinphoto.com">contact@yacinphoto.com</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s7-6.5 7-11a7 7 0 1 0-14 0c0 4.5 7 11 7 11Z"/>
+              <circle cx="12" cy="10" r="2.5"/>
+            </svg>
+            <span>ایران — فعالیت سراسری</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-divider">
+      <span class="footer-divider__dot"></span>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom__right">
+        <p>© <span id="footerYear">2025</span> <strong>Yacin Photo</strong> — تمامی حقوق محفوظ است.</p>
+      </div>
+      <div class="footer-bottom__left">
+        <span class="footer-bottom__made">
+          ساخته شده با
+          <svg class="footer-heart" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/>
+          </svg>
+          توسط یاسین
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts (بدون تکرار) -->
+  <script src="js/site-content.js"></script>
+<script src="js/portfolio-filter.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/formation.js"></script>
+  <script src="js/locations.js"></script>
+  <!-- ═══ Splash Screen (صفحه لودینگ) ═══ -->
+  <div class="splash-screen" id="splashScreen" aria-hidden="true">
+    <div class="splash-content">
+      <div class="splash-logo">
+  <img src="assets/my-logo.png" alt="Yacin Photo Logo" class="splash-logo__img" />
+</div>
+      <div class="splash-title">
+        <span class="splash-title__word">YACIN</span>
+        <span class="splash-title__dot">·</span>
+        <span class="splash-title__word">PHOTO</span>
+      </div>
+      <div class="splash-line">
+        <span class="splash-line__fill"></span>
+      </div>
+      <p class="splash-tagline">ثبت حس، لحظه و شخصیت</p>
+    </div>
+  </div>
+</body></html>

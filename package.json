@@ -1,0 +1,17 @@
+{
+  "name": "yacin-photo",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "NODE_ENV=production node server.js",
+    "dev": "node server.js"
+  },
+    "dependencies": {
+    "dotenv": "^18.0.7",
+    "express": "^4.19.2",
+    "multer": "^2.0.0"
+  }
+}
